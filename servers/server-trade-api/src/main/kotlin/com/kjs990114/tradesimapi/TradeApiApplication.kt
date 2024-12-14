@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class TradesimApiApplication
+class TradeApiApplication
 
 fun main(args: Array<String>) {
-	runApplication<TradesimApiApplication>(*args)
+	runApplication<TradeApiApplication>(*args)
 }
