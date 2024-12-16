@@ -1,7 +1,7 @@
 rootProject.name = "tradesim-api"
 
 include(
-    "server-trade-api",
+    "server-trade-http",
     "server-trade-ws",
     "domain-trade",
     "domain-auth",
@@ -10,7 +10,7 @@ include(
     "infra-trade"
 )
 
-project(":server-trade-api").projectDir = file("servers/server-trade-api")
+project(":server-trade-http").projectDir = file("servers/server-trade-http")
 project(":server-trade-ws").projectDir = file("servers/server-trade-ws")
 project(":domain-trade").projectDir = file("domains/domain-trade")
 project(":domain-auth").projectDir = file("domains/domain-auth")
