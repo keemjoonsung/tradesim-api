@@ -6,6 +6,8 @@ import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpHeaders
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.filter.OncePerRequestFilter
 
 class JWTAuthenticationFilter(
@@ -20,7 +22,7 @@ class JWTAuthenticationFilter(
         val token = extractAccessToken(request)
 
         val user = tokenToUser(token)
-            ?.also { setAuthentication(it) }
+            .also { setAuthentication(it) }
 
         filterChain.doFilter(request, response)
     }
@@ -30,6 +32,11 @@ class JWTAuthenticationFilter(
             .getOrElse { throw APIAuthException(AuthApplicationErrors.TOKEN_INVALID.toException()) }
 
         return SpringAuthUser(user)
+    }
+
+    private fun setAuthentication(user : SpringAuthUser) {
+        val authentication = UsernamePasswordAuthenticationToken(user, null, user.authorities)
+        SecurityContextHolder.getContext().authentication = authentication
     }
 
     companion object {
