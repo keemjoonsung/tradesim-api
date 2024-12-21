@@ -54,7 +54,4 @@ class JWTAuthenticationFilter(
             return request.getHeader(HttpHeaders.AUTHORIZATION).removePrefix(BEARER)
         }
     }
-
-
-
 }

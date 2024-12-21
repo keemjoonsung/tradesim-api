@@ -1,0 +1,7 @@
+trade:
+  auth:
+    token:
+      secret: askldhjkshfjkasdhfklashfklashjfkn1m23hjs90eUFsKLFn1j3kedKA@anskdn=
+      expiration:
+        access-token: 1h
+        refresh-token: 14d
