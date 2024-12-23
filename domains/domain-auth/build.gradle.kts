@@ -1,2 +1,4 @@
 
-dependencies {}
+dependencies {
+    implementation(project(":domain-trade"))
+}

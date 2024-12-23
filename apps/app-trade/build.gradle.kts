@@ -14,6 +14,10 @@ tasks {
 }
 
 dependencies {
+
+    implementation(project(":domain-auth"))
+    implementation(project(":domain-trade"))
+
     implementation("org.springframework.boot:spring-boot-starter")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")

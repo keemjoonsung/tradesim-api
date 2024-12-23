@@ -15,6 +15,9 @@ tasks {
 
 dependencies {
     implementation(project(":domain-auth"))
+    implementation(project(":domain-trade"))
+
+    implementation(project(":app-trade"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
