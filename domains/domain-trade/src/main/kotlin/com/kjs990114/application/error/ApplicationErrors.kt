@@ -1,7 +1,7 @@
 package com.kjs990114.application.error
 
-import com.kjs990114.domain.error.DomainException
-import com.kjs990114.domain.error.ErrorInfo
+import com.kjs990114.domain.error.base.DomainException
+import com.kjs990114.domain.error.base.ErrorInfo
 
 open class ApplicationException(
     override val errors: List<ApplicationErrorInfo>,

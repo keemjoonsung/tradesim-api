@@ -1,5 +1,6 @@
 package com.kjs990114.auth.domain.user
 
+import com.kjs990114.auth.domain.AuthErrors
 import com.kjs990114.auth.support.utils.PasswordEncoder
 import com.kjs990114.auth.domain.user.vo.AuthRole
 import com.kjs990114.auth.domain.user.vo.Identifier
