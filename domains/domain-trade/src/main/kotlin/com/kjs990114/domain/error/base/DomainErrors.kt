@@ -1,4 +1,4 @@
-package com.kjs990114.domain.error
+package com.kjs990114.domain.error.base
 
 import java.lang.RuntimeException
 

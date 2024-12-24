@@ -2,10 +2,6 @@ package com.kjs990114.auth.domain.token
 
 import com.kjs990114.auth.domain.user.AuthUser
 import com.kjs990114.auth.domain.token.support.JWTAdapter
-import com.kjs990114.auth.domain.token.AuthToken
-import com.kjs990114.auth.domain.token.TokenManagement
-import com.kjs990114.auth.domain.token.TokenPair
-import com.kjs990114.auth.domain.token.TokenPairRepository
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
