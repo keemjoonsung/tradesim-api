@@ -1,5 +1,7 @@
 package com.kjs990114.auth.domain.user.vo
 
+import com.kjs990114.auth.domain.AuthInputErrors
+
 data class Identifier(
     val value: String,
 ){
@@ -11,7 +13,6 @@ data class Identifier(
         }
 
         fun of(value: String): Identifier {
-            //TODO
             if (!validate(value)) throw AuthInputErrors.INVALID_IDENTIFIER.toException()
 
             return Identifier(value)
