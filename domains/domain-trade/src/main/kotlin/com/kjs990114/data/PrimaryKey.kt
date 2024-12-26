@@ -9,7 +9,11 @@ data class PrimaryKey(
 ) {
     companion object {
         val NULL = PrimaryKey()
-        fun of(value: Long) : PrimaryKey {
+        fun of(value: Long): PrimaryKey {
+            return PrimaryKey(value)
+        }
+
+        fun from(value: Long?): PrimaryKey {
             return PrimaryKey(value)
         }
     }

@@ -21,7 +21,6 @@ data class AuthToken(
     }
 }
 
-
 interface TokenManagement {
     fun generate(user: AuthUser): TokenPair
     fun validate(token: String): AuthUser
@@ -29,7 +28,6 @@ interface TokenManagement {
     fun remove(): AuthUser
 }
 
-// infrastructure에서 구현예정
 interface TokenPairRepository {
     fun findBy(pk: PK): TokenPair?
     fun findByUser(userPk: PK): TokenPair?
