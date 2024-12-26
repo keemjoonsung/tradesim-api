@@ -1,10 +1,11 @@
 package com.kjs990114.auth.domain
 
-import com.kjs990114.domain.error.ErrorInfo
+import com.kjs990114.domain.error.InputErrorInfo
+import com.kjs990114.domain.error.base.ErrorInfo
 
 enum class AuthErrors(
     override val desc: String,
-): ErrorInfo{
+): ErrorInfo {
     NOT_FOUND("유저를 찾을 수 없습니다"),
 
     ALREADY_WITHDRAWN("이미 회원탈퇴를 한 유저입니다"),
@@ -17,4 +18,15 @@ enum class AuthErrors(
     override val code = this.name
 }
 
+enum class AuthInputErrors(
+    override val desc: String,
+    override val field: String,
+): InputErrorInfo {
+    REQUIRED_IDENTIFIER("아이디가 입력되지 않았습니다", "identifier"),
 
+    INVALID_IDENTIFIER("아이디의 형식이 올바르지 않습니다", "identifier"),
+    INVALID_PASSWORD("패스워드의 형식이 올바르지 않습니다", "password"),
+    ;
+
+    override val code = this.name
+}

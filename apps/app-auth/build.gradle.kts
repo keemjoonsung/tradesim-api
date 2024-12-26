@@ -19,9 +19,15 @@ dependencies {
 
     implementation(project(":app-trade"))
 
+    implementation(project(":infra-auth"))
+    implementation(project(":infra-trade"))
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+
+    // Transactional
+    implementation("org.springframework:spring-tx")
 
     val jjwtVersion = "0.12.3"
     implementation("io.jsonwebtoken:jjwt-api:$jjwtVersion")
