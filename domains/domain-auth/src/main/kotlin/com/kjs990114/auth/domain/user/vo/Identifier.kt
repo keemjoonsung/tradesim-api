@@ -12,7 +12,7 @@ data class Identifier(
 
         fun of(value: String): Identifier {
             //TODO
-            if (!validate(value)) throw AuthInputErrors.INVALID_IDENTIFIER.toException()
+//            if (!validate(value)) throw AuthInputErrors.INVALID_IDENTIFIER.toException()
 
             return Identifier(value)
         }

@@ -1,22 +1,22 @@
-CREATE SCHEMA IF NOT EXISTS 'trade_auth';
+CREATE SCHEMA IF NOT EXISTS `auth`;
 
-DROP TABLE IF EXISTS `trade_auth`.`user`;
-CREATE TABLE `trade_auth`.`user`
+DROP TABLE IF EXISTS `auth`.`user`;
+CREATE TABLE `auth`.`user`
 (
-    `id`            BIGTINT         NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'PK',
+    `id`            BIGINT         NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'PK',
 
-    `identifier`    VARCHAR(256)    NOT NULL COMMENT 'ID(이메일)',
+    `identifier`    VARCHAR(256)    NOT NULL COMMENT '아이디 (이메일)',
     `password`      VARCHAR(256)    NOT NULL COMMENT '비밀번호',
     `withdrawn`     BOOL            NOT NULL DEFAULT FALSE COMMENT '회원 탈퇴 여부',
     `role`          VARCHAR(64)     NOT NULL COMMENT 'ROLE',
 
     `created_at`    DATETIME        NOT NULL COMMENT '생성일시',
-    `updated_by`    DATETIME        NOT NULL COMMENT '수정일시',
+    `updated_by`    DATETIME        NOT NULL COMMENT '수정일시'
 )
 ;
 
-DROP TABLE IF EXISTS `trade_auth`.`user_token`;
-CREATE TABLE `trade_auth`.`user_token`
+DROP TABLE IF EXISTS `auth`.`user_token`;
+CREATE TABLE `auth`.`user_token`
 (
     `id`              BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'PK',
     `user_id`         BIGINT       NOT NULL COMMENT 'user PK',
