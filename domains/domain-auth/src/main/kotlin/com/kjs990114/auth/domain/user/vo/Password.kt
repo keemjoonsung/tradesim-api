@@ -1,5 +1,6 @@
 package com.kjs990114.auth.domain.user.vo
 
+import com.kjs990114.auth.domain.AuthInputErrors
 import com.kjs990114.auth.support.utils.PasswordEncoder
 
 data class Password(
@@ -28,8 +29,7 @@ data class Password(
         }
 
         fun of(raw: String, encoder: PasswordEncoder): Password {
-            // TODO
-//            if(!validate(raw)) throw AuthInputErrors.INVALID_PASSWORD.toException()
+            if(!validate(raw)) throw AuthInputErrors.INVALID_PASSWORD.toException()
 
             return Password(encoder.encode(raw), raw)
         }

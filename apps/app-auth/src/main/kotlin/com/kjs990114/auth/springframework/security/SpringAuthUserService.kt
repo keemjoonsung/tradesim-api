@@ -9,11 +9,11 @@ class SpringAuthUser(
 ): UserDetails{
     fun getTokenUser() = user
 
-    override fun getAuthorities() = mutableSetOf(GrantedAuthority { PREFIX_ROLE + user.role.name })
+    override fun getAuthorities() = mutableSetOf(GrantedAuthority { PREFIX + user.role.name })
     override fun getUsername() = user.identifier.value
     override fun getPassword() = user.password.value
 
     companion object {
-        private const val PREFIX_ROLE = "ROLE_"
+        private const val PREFIX = "ROLE_"
     }
 }
