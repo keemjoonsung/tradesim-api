@@ -10,13 +10,13 @@ import com.kjs990114.data.PK
 import java.time.LocalDateTime
 
 data class DBUser(
-    val pk: Long,
-    val identifier: String,
-    val password: String,
-    val role: String,
-    val withdrawn: Boolean,
-    val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime,
+    private val pk: Long,
+    private val identifier: String,
+    private val password: String,
+    private val role: String,
+    private val withdrawn: Boolean,
+    private val createdAt: LocalDateTime,
+    private val updatedAt: LocalDateTime,
 ) {
     fun toDomain(): AuthUser {
         return AuthUser(

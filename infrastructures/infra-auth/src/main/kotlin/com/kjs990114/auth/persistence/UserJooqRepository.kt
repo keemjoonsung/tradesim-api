@@ -30,10 +30,10 @@ class UserJooqRepository(
     }
 
     override fun save(user: AuthUser): AuthUser {
-        return saveUser(user).toDomain()
+        return insertOrUpdateUser(user).toDomain()
     }
 
-    private fun saveUser(user: AuthUser): DBUser {
+    private fun insertOrUpdateUser(user: AuthUser): DBUser {
         return dsl
             .insertInto(USER)
             .set(USER.ID, user.pk.getKey())
