@@ -1,6 +1,6 @@
 package com.kjs990114.auth.domain.token
 
-import com.kjs990114.auth.domain.user.AuthUser
+import com.kjs990114.auth.domain.user.BaseUser
 import com.kjs990114.auth.domain.token.support.JWTAdapter
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -27,11 +27,11 @@ class TokenManagerImpl(
     private val repository: TokenPairRepository,
 ): TokenManagement {
     private val adapter = JWTAdapter(config.secret)
-    override fun generate(user: AuthUser): TokenPair {
+    override fun generate(user: BaseUser): TokenPair {
         TODO("Not yet implemented")
     }
 
-    override fun validate(token: String): AuthUser {
+    override fun validate(token: String): BaseUser {
         TODO("Not yet implemented")
     }
 
@@ -39,7 +39,7 @@ class TokenManagerImpl(
         TODO("Not yet implemented")
     }
 
-    override fun remove(): AuthUser {
+    override fun remove(): BaseUser {
         TODO("Not yet implemented")
     }
 }

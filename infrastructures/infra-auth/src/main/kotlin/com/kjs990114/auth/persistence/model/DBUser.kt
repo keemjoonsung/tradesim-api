@@ -1,6 +1,6 @@
 package com.kjs990114.auth.persistence.model
 
-import com.kjs990114.auth.domain.user.AuthUser
+import com.kjs990114.auth.domain.user.BaseUser
 import com.kjs990114.auth.domain.user.vo.AuthRole
 import com.kjs990114.auth.domain.user.vo.Identifier
 import com.kjs990114.auth.domain.user.vo.Password
@@ -18,8 +18,8 @@ data class DBUser(
     private val createdAt: LocalDateTime,
     private val updatedAt: LocalDateTime,
 ) {
-    fun toDomain(): AuthUser {
-        return AuthUser(
+    fun toDomain(): BaseUser {
+        return BaseUser(
             identifier = Identifier.of(identifier),
             password = Password.of(password,PasswordEncoderImpl()),
             role = AuthRole.of(role),

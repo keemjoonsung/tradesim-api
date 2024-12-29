@@ -1,6 +1,6 @@
 package com.kjs990114.auth.domain.token
 
-import com.kjs990114.auth.domain.user.AuthUser
+import com.kjs990114.auth.domain.user.BaseUser
 import com.kjs990114.data.PK
 import java.time.LocalDateTime
 
@@ -22,10 +22,10 @@ data class AuthToken(
 }
 
 interface TokenManagement {
-    fun generate(user: AuthUser): TokenPair
-    fun validate(token: String): AuthUser
+    fun generate(user: BaseUser): TokenPair
+    fun validate(token: String): BaseUser
     fun refresh(accessToken: AuthToken, refreshToken: AuthToken): TokenPair
-    fun remove(): AuthUser
+    fun remove(): BaseUser
 }
 
 interface TokenPairRepository {
