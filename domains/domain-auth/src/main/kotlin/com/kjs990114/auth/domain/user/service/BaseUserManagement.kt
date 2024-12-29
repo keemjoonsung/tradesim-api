@@ -1,11 +1,11 @@
 package com.kjs990114.auth.domain.user.service
 
 import com.kjs990114.auth.domain.AuthErrors
-import com.kjs990114.auth.domain.user.BaseUser
 import com.kjs990114.auth.domain.user.AuthUserRepository
+import com.kjs990114.auth.domain.user.BaseUser
 import com.kjs990114.auth.domain.user.vo.AuthRole
 import com.kjs990114.auth.domain.user.vo.Identifier
-import com.kjs990114.auth.support.utils.PasswordEncoder
+import com.kjs990114.auth.domain.user.vo.Password
 import com.kjs990114.data.PK
 
 interface BaseUserManagement {
@@ -15,16 +15,15 @@ interface BaseUserManagement {
     fun register(new: BaseUser): BaseUser
 
     fun changeIdentifier(stored: BaseUser, new: Identifier): BaseUser
-    fun changePassword(stored: BaseUser, newRaw: String, currentRaw: String): BaseUser
     fun changeRole(stored: BaseUser, new: AuthRole): BaseUser
+    fun changePassword(stored: BaseUser, new: Password): BaseUser
 
-    fun withdraw(me: BaseUser): BaseUser
+    fun withdraw(stored: BaseUser): BaseUser
     fun delete(pk: PK): BaseUser
 }
 
 class BaseUserService(
     private val repository: AuthUserRepository,
-    private val encoder: PasswordEncoder,
 ): BaseUserManagement {
     override fun login(identifier: String, password: String): BaseUser {
         TODO("Not yet implemented")
@@ -44,15 +43,15 @@ class BaseUserService(
         TODO("Not yet implemented")
     }
 
-    override fun changePassword(stored: BaseUser, newRaw: String, currentRaw: String): BaseUser {
-        TODO("Not yet implemented")
-    }
-
     override fun changeRole(stored: BaseUser, new: AuthRole): BaseUser {
         TODO("Not yet implemented")
     }
 
-    override fun withdraw(me: BaseUser): BaseUser {
+    override fun changePassword(stored: BaseUser, new: Password): BaseUser {
+        TODO("Not yet implemented")
+    }
+
+    override fun withdraw(stored: BaseUser): BaseUser {
         TODO("Not yet implemented")
     }
 
@@ -60,7 +59,7 @@ class BaseUserService(
         TODO("Not yet implemented")
     }
 
-    private fun checkExistsIdentifier(identifier: Identifier): Boolean{
+    private fun checkExistsIdentifier(identifier: Identifier): Boolean {
         return repository.findById(identifier)?.let { throw AuthErrors.ALREADY_EXISTS_ID.toException() } ?: true
     }
 }
