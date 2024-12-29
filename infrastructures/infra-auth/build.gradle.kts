@@ -54,6 +54,13 @@ jooq {
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
                         includes = ".*"
+                        forcedTypes.addAll(
+                            listOf(
+                                org.jooq.meta.jaxb.ForcedType()
+                                    .withName("BOOLEAN")
+                                    .withIncludeTypes("(?i:TINYINT(UNSIGNED)?\\(1\\))")
+                            )
+                        )
                     }
                     generate.apply {
                         isDeprecated = false
@@ -61,11 +68,15 @@ jooq {
                         isFluentSetters = true
                     }
                     target.apply {
-                        packageName = "com.ksd.infra.persistence.jooq.spation"
+                        packageName = "com.kjs990114.infra.persistence.jooq.trade"
                         directory = jooqGeneratedFolder
                     }
                     strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
-                }
+
+                    }
+
+
+
             }
         }
     }

@@ -11,7 +11,7 @@ CREATE TABLE `auth`.`user`
     `role`          VARCHAR(64)     NOT NULL COMMENT 'ROLE',
 
     `created_at`    DATETIME        NOT NULL COMMENT '생성일시',
-    `updated_by`    DATETIME        NOT NULL COMMENT '수정일시'
+    `updated_at`    DATETIME        NOT NULL COMMENT '수정일시'
 )
 ;
 
