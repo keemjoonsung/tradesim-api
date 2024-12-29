@@ -14,5 +14,9 @@ data class Audit(
         fun new(): Audit {
             return Audit(createdAt = LocalDateTime.now(), updatedAt = LocalDateTime.now())
         }
+
+        fun of(createdAt: LocalDateTime, updatedAt: LocalDateTime): Audit {
+            return Audit(createdAt, updatedAt)
+        }
     }
 }

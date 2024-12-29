@@ -24,6 +24,10 @@ data class Password(
             return PATTERN.matches(text)
         }
 
+        fun from(encoded: String): Password {
+            return Password(encoded)
+        }
+
         fun of(raw: String, encoder: PasswordEncoder): Password {
             if(!validate(raw)) throw AuthInputErrors.INVALID_PASSWORD.toException()
 
