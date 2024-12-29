@@ -9,6 +9,7 @@ enum class AuthErrors(
     NOT_FOUND("유저를 찾을 수 없습니다"),
 
     ALREADY_WITHDRAWN("이미 회원탈퇴를 한 유저입니다"),
+    ALREADY_EXISTS_ID("이미 존재하는 아이디 입니다"),
 
     NOT_MATCHED_PASSWORD("패스워드가 일치하지 않습니다"),
     INVALID_PASSWORD("패스워드의 형식이 올바르지 않습니다"),

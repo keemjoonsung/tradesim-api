@@ -6,7 +6,7 @@ import com.kjs990114.auth.application.AuthApplicationErrors
 import com.kjs990114.auth.domain.AuthInputErrors
 import com.kjs990114.auth.domain.token.TokenManagement
 import com.kjs990114.auth.domain.token.TokenPair
-import com.kjs990114.auth.domain.user.AuthUser
+import com.kjs990114.auth.domain.user.BaseUser
 import com.kjs990114.auth.domain.user.vo.Password
 import com.kjs990114.auth.support.utils.PasswordEncoderImpl
 import org.springframework.stereotype.Component
@@ -40,15 +40,15 @@ class LoginUseCase(
             .let {Result(it)}
     }
 
-    private fun login(param: Param): AuthUser {
+    private fun login(param: Param): BaseUser {
         //TODO()
 //        return runCatching { authManagement.login(param.identifier, param.rawPassword)}
 //            .getOrElse { throw AuthApplicationErrors.USER_NOT_MATCHED.toException() }
 
-        return AuthUser.new("kjs990114@naver.com", Password.of("trade1234!",PasswordEncoderImpl()), "USER")
+        return BaseUser.new("kjs990114@naver.com", Password.of("trade1234!",PasswordEncoderImpl()), "USER")
     }
 
-    private fun generateToken(user: AuthUser): TokenPair {
+    private fun generateToken(user: BaseUser): TokenPair {
         return runCatching { tokenManagement.generate(user) }
             .getOrElse { throw AuthApplicationErrors.FAILED_TO_GENERATE_TOKEN.toException() }
     }
