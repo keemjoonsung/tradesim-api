@@ -1,4 +1,4 @@
-package com.kjs990114.tradesimapi
+package com.kjs990114
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

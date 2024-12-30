@@ -61,7 +61,7 @@ data class BaseUser(
 }
 
 
-interface AuthUserRepository {
+interface BaseUserRepository {
     fun findBy(pk: PK): BaseUser?
     fun findById(identifier: Identifier): BaseUser?
 

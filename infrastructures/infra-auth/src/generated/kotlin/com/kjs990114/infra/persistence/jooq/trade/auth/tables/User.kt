@@ -5,6 +5,8 @@ package com.kjs990114.infra.persistence.jooq.trade.auth.tables
 
 
 import com.kjs990114.infra.persistence.jooq.trade.auth.Auth
+import com.kjs990114.infra.persistence.jooq.trade.auth.keys.KEY_USER_IDENTIFIER
+import com.kjs990114.infra.persistence.jooq.trade.auth.keys.KEY_USER_IDENTIFIER_2
 import com.kjs990114.infra.persistence.jooq.trade.auth.keys.KEY_USER_PRIMARY
 import com.kjs990114.infra.persistence.jooq.trade.auth.tables.records.UserRecord
 
@@ -12,6 +14,7 @@ import java.time.LocalDateTime
 import java.util.function.Function
 
 import kotlin.collections.Collection
+import kotlin.collections.List
 
 import org.jooq.Condition
 import org.jooq.Field
@@ -23,7 +26,7 @@ import org.jooq.PlainSQL
 import org.jooq.QueryPart
 import org.jooq.Record
 import org.jooq.Records
-import org.jooq.Row7
+import org.jooq.Row8
 import org.jooq.SQL
 import org.jooq.Schema
 import org.jooq.Select
@@ -106,9 +109,15 @@ open class User(
     val CREATED_AT: TableField<UserRecord, LocalDateTime?> = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "생성일시")
 
     /**
-     * The column <code>auth.user.update_at</code>.
+     * The column <code>auth.user.updated_at</code>. 수정일시
      */
-    val UPDATE_AT: TableField<UserRecord, LocalDateTime?> = createField(DSL.name("update_at"), SQLDataType.LOCALDATETIME(0), this, "")
+    val UPDATED_AT: TableField<UserRecord, LocalDateTime?> = createField(DSL.name("updated_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "수정일시")
+
+    /**
+     * The column <code>auth.user.deleted</code>. Soft Delete 상태 관리하는 stored
+     * virtual column
+     */
+    val DELETED: TableField<UserRecord, Boolean?> = createField(DSL.name("deleted"), SQLDataType.BOOLEAN, this, "Soft Delete 상태 관리하는 stored virtual column")
 
     private constructor(alias: Name, aliased: Table<UserRecord>?): this(alias, null, null, null, aliased, null, null)
     private constructor(alias: Name, aliased: Table<UserRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, null, aliased, parameters, null)
@@ -131,6 +140,7 @@ open class User(
     override fun getSchema(): Schema? = if (aliased()) null else Auth.AUTH
     override fun getIdentity(): Identity<UserRecord, Long?> = super.getIdentity() as Identity<UserRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<UserRecord> = KEY_USER_PRIMARY
+    override fun getUniqueKeys(): List<UniqueKey<UserRecord>> = listOf(KEY_USER_IDENTIFIER, KEY_USER_IDENTIFIER_2)
     override fun `as`(alias: String): User = User(DSL.name(alias), this)
     override fun `as`(alias: Name): User = User(alias, this)
     override fun `as`(alias: Table<*>): User = User(alias.qualifiedName, this)
@@ -201,18 +211,18 @@ open class User(
     override fun whereNotExists(select: Select<*>): User = where(DSL.notExists(select))
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row7<Long?, String?, String?, Boolean?, String?, LocalDateTime?, LocalDateTime?> = super.fieldsRow() as Row7<Long?, String?, String?, Boolean?, String?, LocalDateTime?, LocalDateTime?>
+    override fun fieldsRow(): Row8<Long?, String?, String?, Boolean?, String?, LocalDateTime?, LocalDateTime?, Boolean?> = super.fieldsRow() as Row8<Long?, String?, String?, Boolean?, String?, LocalDateTime?, LocalDateTime?, Boolean?>
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    fun <U> mapping(from: (Long?, String?, String?, Boolean?, String?, LocalDateTime?, LocalDateTime?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
+    fun <U> mapping(from: (Long?, String?, String?, Boolean?, String?, LocalDateTime?, LocalDateTime?, Boolean?) -> U): SelectField<U> = convertFrom(Records.mapping(from))
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    fun <U> mapping(toType: Class<U>, from: (Long?, String?, String?, Boolean?, String?, LocalDateTime?, LocalDateTime?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
+    fun <U> mapping(toType: Class<U>, from: (Long?, String?, String?, Boolean?, String?, LocalDateTime?, LocalDateTime?, Boolean?) -> U): SelectField<U> = convertFrom(toType, Records.mapping(from))
 }

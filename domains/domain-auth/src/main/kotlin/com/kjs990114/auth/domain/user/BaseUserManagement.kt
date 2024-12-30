@@ -1,8 +1,6 @@
-package com.kjs990114.auth.domain.user.service
+package com.kjs990114.auth.domain.user
 
 import com.kjs990114.auth.domain.AuthErrors
-import com.kjs990114.auth.domain.user.AuthUserRepository
-import com.kjs990114.auth.domain.user.BaseUser
 import com.kjs990114.auth.domain.user.vo.AuthRole
 import com.kjs990114.auth.domain.user.vo.Identifier
 import com.kjs990114.auth.domain.user.vo.Password
@@ -23,7 +21,7 @@ interface BaseUserManagement {
 }
 
 class BaseUserService(
-    private val repository: AuthUserRepository,
+    private val repository: BaseUserRepository,
 ): BaseUserManagement {
     override fun login(identifier: String, password: String): BaseUser {
         TODO("Not yet implemented")
