@@ -5,13 +5,16 @@ CREATE TABLE `auth`.`user`
 (
     `id`            BIGINT         NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'PK',
 
-    `identifier`    VARCHAR(256)    NOT NULL COMMENT '아이디 (이메일)',
+    `identifier`    VARCHAR(256)    NOT NULL UNIQUE COMMENT '아이디 (이메일)',
     `password`      VARCHAR(256)    NOT NULL COMMENT '비밀번호',
     `withdrawn`     BOOL            NOT NULL DEFAULT FALSE COMMENT '회원 탈퇴 여부',
     `role`          VARCHAR(64)     NOT NULL COMMENT 'ROLE',
 
     `created_at`    DATETIME        NOT NULL COMMENT '생성일시',
-    `updated_at`    DATETIME        NOT NULL COMMENT '수정일시'
+    `updated_at`    DATETIME        NOT NULL COMMENT '수정일시',
+    `deleted`       BOOL AS (IF(`withdrawn` = TRUE, NULL, FALSE)) STORED COMMENT 'Soft Delete 상태 관리하는 stored virtual column',
+
+    UNIQUE (`identifier`, `deleted`)
 )
 ;
 

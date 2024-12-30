@@ -1,0 +1,7 @@
+trade:
+  auth:
+    token:
+      secret: "1231209319028391203"
+      expiration:
+        accessToken: 1d
+        refreshToken: 30d

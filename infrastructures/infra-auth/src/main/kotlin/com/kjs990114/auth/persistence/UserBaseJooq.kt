@@ -14,7 +14,7 @@ open class UserBaseJooq(
             USER.ROLE.`as`("role"),
             USER.WITHDRAWN.`as`("withdrawn"),
             USER.CREATED_AT.`as`("createdAt"),
-            USER.UPDATE_AT.`as`("updatedAt"),
+            USER.UPDATED_AT.`as`("updatedAt"),
         )
         .from(USER)
 }
