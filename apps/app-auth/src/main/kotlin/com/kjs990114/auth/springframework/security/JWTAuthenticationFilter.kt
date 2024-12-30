@@ -18,6 +18,7 @@ class JWTAuthenticationFilter(
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
         if (ignoreURI(request)) {
             filterChain.doFilter(request, response)
+            println("ignore uri ${request.requestURL}")
             return
         }
 
@@ -44,6 +45,7 @@ class JWTAuthenticationFilter(
     companion object {
         private val IGNORE_URLS = listOf(
             "/api/auth/login",
+            "/api/auth/join",
         )
 
         private fun ignoreURI(request: HttpServletRequest) : Boolean {

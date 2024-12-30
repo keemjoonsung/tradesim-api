@@ -19,5 +19,7 @@ import org.jooq.impl.Internal
 // UNIQUE and PRIMARY KEY definitions
 // -------------------------------------------------------------------------
 
+val KEY_USER_IDENTIFIER: UniqueKey<UserRecord> = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_identifier"), arrayOf(User.USER.IDENTIFIER), true)
+val KEY_USER_IDENTIFIER_2: UniqueKey<UserRecord> = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_identifier_2"), arrayOf(User.USER.IDENTIFIER, User.USER.DELETED), true)
 val KEY_USER_PRIMARY: UniqueKey<UserRecord> = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_PRIMARY"), arrayOf(User.USER.ID), true)
 val KEY_USER_TOKEN_PRIMARY: UniqueKey<UserTokenRecord> = Internal.createUniqueKey(UserToken.USER_TOKEN, DSL.name("KEY_user_token_PRIMARY"), arrayOf(UserToken.USER_TOKEN.ID), true)

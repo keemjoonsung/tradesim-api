@@ -21,7 +21,7 @@ data class DBUser(
     fun toDomain(): BaseUser {
         return BaseUser(
             identifier = Identifier.of(identifier),
-            password = Password.of(password,PasswordEncoderImpl()),
+            password = Password.from(password),
             role = AuthRole.of(role),
             audit = Audit.of(createdAt, updatedAt),
             withdrawn = withdrawn,

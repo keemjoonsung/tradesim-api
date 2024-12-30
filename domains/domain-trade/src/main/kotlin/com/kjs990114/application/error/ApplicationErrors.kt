@@ -14,3 +14,5 @@ interface ApplicationErrorInfo: ErrorInfo {
     override fun toException(cause : Throwable?) = ApplicationException(this , cause)
     override fun toException() = toException(null)
 }
+
+

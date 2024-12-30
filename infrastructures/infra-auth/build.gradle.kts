@@ -12,14 +12,13 @@ tasks {
     named<BootJar>("bootJar") {
         enabled = false
     }
+
 }
 
 dependencies {
     implementation(project(":domain-auth"))
 
     implementation("org.springframework.boot:spring-boot-starter")
-
-    implementation("org.springframework.data:spring-data-jpa")
 
     implementation("org.springframework.security:spring-security-crypto")
     implementation(project(":domain-trade"))
@@ -44,7 +43,6 @@ jooq {
     version.set("3.19.16")
     configurations {
         create("main") {
-            generateSchemaSourceOnCompilation.set(true)
             jooqConfiguration.apply {
                 logging = Logging.WARN
 
