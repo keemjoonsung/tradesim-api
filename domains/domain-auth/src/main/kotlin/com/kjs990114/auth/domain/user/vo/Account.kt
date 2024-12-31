@@ -3,6 +3,24 @@ package com.kjs990114.auth.domain.user.vo
 import com.kjs990114.auth.domain.AuthInputErrors
 import com.kjs990114.auth.support.utils.PasswordEncoder
 
+data class Identifier(
+    val value: String,
+){
+    companion object {
+        private val PATTERN = "^[A-Za-z0-9+_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+\$".toRegex()
+
+        fun validate(text: String): Boolean {
+            return PATTERN.matches(text)
+        }
+
+        fun of(value: String): Identifier {
+            if (!validate(value)) throw AuthInputErrors.INVALID_IDENTIFIER.toException()
+
+            return Identifier(value)
+        }
+    }
+}
+
 data class Password(
     val value: String, //암호화된 것
     private val raw: String? = null, // 원본

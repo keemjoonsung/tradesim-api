@@ -1,7 +1,7 @@
 package com.kjs990114.auth.domain.user
 
 import com.kjs990114.auth.domain.AuthErrors
-import com.kjs990114.auth.domain.user.vo.AuthRole
+import com.kjs990114.auth.domain.user.vo.Role
 import com.kjs990114.auth.domain.user.vo.Identifier
 import com.kjs990114.auth.domain.user.vo.Password
 import com.kjs990114.data.PK
@@ -13,7 +13,7 @@ interface BaseUserManagement {
     fun register(new: BaseUser): BaseUser
 
     fun changeIdentifier(stored: BaseUser, new: Identifier): BaseUser
-    fun changeRole(stored: BaseUser, new: AuthRole): BaseUser
+    fun changeRole(stored: BaseUser, new: Role): BaseUser
     fun changePassword(stored: BaseUser, new: Password): BaseUser
 
     fun withdraw(stored: BaseUser): BaseUser
@@ -41,7 +41,7 @@ class BaseUserService(
         TODO("Not yet implemented")
     }
 
-    override fun changeRole(stored: BaseUser, new: AuthRole): BaseUser {
+    override fun changeRole(stored: BaseUser, new: Role): BaseUser {
         TODO("Not yet implemented")
     }
 

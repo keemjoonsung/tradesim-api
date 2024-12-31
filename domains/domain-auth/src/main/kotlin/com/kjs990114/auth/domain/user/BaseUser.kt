@@ -2,7 +2,7 @@ package com.kjs990114.auth.domain.user
 
 import com.kjs990114.auth.domain.AuthErrors
 import com.kjs990114.auth.support.utils.PasswordEncoder
-import com.kjs990114.auth.domain.user.vo.AuthRole
+import com.kjs990114.auth.domain.user.vo.Role
 import com.kjs990114.auth.domain.user.vo.Identifier
 import com.kjs990114.auth.domain.user.vo.Password
 import com.kjs990114.data.Audit
@@ -12,7 +12,7 @@ import com.kjs990114.data.PK
 data class BaseUser(
     val identifier: Identifier,
     val password: Password,
-    val role: AuthRole,
+    val role: Role,
     val withdrawn: Boolean,
 
     override val pk: PK,
@@ -29,7 +29,7 @@ data class BaseUser(
         return this.copy(password = Password.of(raw, encoder), audit = audit.updated())
     }
 
-    fun changeRole(role: AuthRole): BaseUser {
+    fun changeRole(role: Role): BaseUser {
         if (this.role == role) throw AuthErrors.NOT_CHANGED.toException()
 
         return this.copy(role = role, audit = audit.updated())
@@ -50,7 +50,7 @@ data class BaseUser(
             return BaseUser(
                 identifier = Identifier.of(identifier),
                 password = password,
-                role = AuthRole.of(role),
+                role = Role.of(role),
                 withdrawn = false,
 
                 pk = PK.NULL,
