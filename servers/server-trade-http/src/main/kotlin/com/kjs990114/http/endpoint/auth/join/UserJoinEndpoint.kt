@@ -1,6 +1,6 @@
 package com.kjs990114.http.endpoint.auth.join
 
-import com.kjs990114.auth.application.usecase.UserJoinUseCase
+import com.kjs990114.auth.application.usecase.join.TraderJoinUseCase
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/auth")
 class UserJoinEndpoint(
-    private val joinUseCase: UserJoinUseCase
+    private val joinUseCase: TraderJoinUseCase
 ) {
 
     @PostMapping("/join")
     @ResponseStatus(HttpStatus.CREATED)
     fun join(
-        @RequestBody request: UserJoinUseCase.UserJoinRequest,
+        @RequestBody request: TraderJoinUseCase.TraderJoinRequest,
     ) {
-        val param = UserJoinUseCase.Param(request)
+        val param = TraderJoinUseCase.Param(request)
 
         joinUseCase.execute(param)
     }

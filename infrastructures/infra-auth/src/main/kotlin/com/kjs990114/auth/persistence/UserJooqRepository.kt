@@ -50,7 +50,7 @@ class UserJooqRepository(
             .set(USER.WITHDRAWN, user.withdrawn)
             .set(USER.UPDATED_AT, user.audit.updatedAt)
             .returning(
-                USER.ID.`as`("id"),
+                USER.ID.`as`("pk"),
                 USER.IDENTIFIER.`as`("identifier"),
                 USER.PASSWORD.`as`("password"),
                 USER.ROLE.`as`("role"),
