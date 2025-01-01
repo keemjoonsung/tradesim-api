@@ -30,7 +30,6 @@ CREATE TABLE `auth`.`user_token`
     `refresh_expired` DATETIME     NOT NULL COMMENT 'refresh token 만료일시',
 
     `created_at`      DATETIME     NOT NULL COMMENT '생성일시',
-    `updated_at`      DATETIME     NOT NULL COMMENT '수정일시',
 
     INDEX `IDX_user_token_001` (`user_id` ASC)
 )

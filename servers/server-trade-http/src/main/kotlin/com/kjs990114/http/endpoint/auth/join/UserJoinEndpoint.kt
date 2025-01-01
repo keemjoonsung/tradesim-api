@@ -17,9 +17,9 @@ class UserJoinEndpoint(
     @PostMapping("/join")
     @ResponseStatus(HttpStatus.CREATED)
     fun join(
-        @RequestBody request: TraderJoinUseCase.TraderJoinRequest,
+        @RequestBody request: TraderJoinRequest
     ) {
-        val param = TraderJoinUseCase.Param(request)
+        val param = TraderJoinUseCase.Param(request.email, request.password, request.name)
 
         joinUseCase.execute(param)
     }

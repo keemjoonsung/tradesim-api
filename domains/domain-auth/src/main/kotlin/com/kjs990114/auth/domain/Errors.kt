@@ -12,7 +12,6 @@ enum class AuthErrors(
     ALREADY_EXISTS_ID("이미 존재하는 아이디 입니다"),
 
     NOT_MATCHED_PASSWORD("패스워드가 일치하지 않습니다"),
-    INVALID_PASSWORD("패스워드의 형식이 올바르지 않습니다"),
 
     NOT_CHANGED("유저 정보가 변경되지 않았습니다."),
     ;
@@ -25,6 +24,7 @@ enum class AuthInputErrors(
     override val field: String,
 ): InputErrorInfo {
     REQUIRED_IDENTIFIER("아이디가 입력되지 않았습니다", "identifier"),
+    REQUIRED_PASSWORD("패스워드가 입력되지 않았습니다", "password"),
 
     INVALID_IDENTIFIER("아이디의 형식이 올바르지 않습니다", "identifier"),
     INVALID_PASSWORD("패스워드의 형식이 올바르지 않습니다", "password"),

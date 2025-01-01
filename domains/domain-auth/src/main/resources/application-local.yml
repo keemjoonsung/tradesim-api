@@ -1,7 +1,7 @@
 trade:
   auth:
     token:
-      secret: "1231209319028391203"
+      secret: "rXfrYXbKjzNRV4lEpJe7TZ9Ut4oHxfPxx9FrS6d3O1E="
       expiration:
         accessToken: 1d
         refreshToken: 30d

@@ -5,11 +5,11 @@ import com.kjs990114.data.PK
 import java.time.LocalDateTime
 
 data class TokenPair(
+    val pk: PK = PK.NULL,
+    val userPk: PK,
+
     val accessToken: AuthToken,
     val refreshToken: AuthToken,
-
-    val pk: PK,
-    val userPk: PK,
 )
 
 data class AuthToken(

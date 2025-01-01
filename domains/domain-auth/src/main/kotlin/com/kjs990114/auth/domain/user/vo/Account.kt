@@ -36,6 +36,7 @@ data class Password(
     companion object {
         private const val MIN_LENGTH = 8
         private const val MAX_LENGTH = 16
+        val NONE = Password("__NONE__")
         private val PATTERN = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])(?=\\S+\$).{$MIN_LENGTH,$MAX_LENGTH}\$".toRegex()
 
         fun validate(text: String): Boolean {

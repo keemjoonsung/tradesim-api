@@ -66,6 +66,7 @@ interface BaseUserRepository {
     fun findById(identifier: Identifier): BaseUser?
 
     fun save(user: BaseUser): BaseUser
+    fun delete(pk: PK)
 }
 
 
