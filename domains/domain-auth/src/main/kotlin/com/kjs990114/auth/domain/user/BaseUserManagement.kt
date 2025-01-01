@@ -4,6 +4,7 @@ import com.kjs990114.auth.domain.AuthErrors
 import com.kjs990114.auth.domain.user.vo.Role
 import com.kjs990114.auth.domain.user.vo.Identifier
 import com.kjs990114.auth.domain.user.vo.Password
+import com.kjs990114.auth.support.utils.PasswordEncoder
 import com.kjs990114.data.PK
 
 interface BaseUserManagement {
@@ -22,9 +23,13 @@ interface BaseUserManagement {
 
 class BaseUserService(
     private val repository: BaseUserRepository,
+    private val encoder: PasswordEncoder,
 ): BaseUserManagement {
     override fun login(identifier: String, password: String): BaseUser {
-        TODO("Not yet implemented")
+        val user = repository.findById(Identifier.of(identifier)) ?: throw AuthErrors.NOT_FOUND.toException()
+        if(user.password.matches(password, encoder).not()) throw AuthErrors.NOT_MATCHED_PASSWORD.toException()
+
+        return user
     }
 
     override fun logout(me: BaseUser): BaseUser {

@@ -21,26 +21,22 @@ class TraderJoinUseCase(
     private val encoder: PasswordEncoder,
 ): UseCase<TraderJoinUseCase.Param, Unit> {
     data class Param(
-        val request: TraderJoinRequest,
+        val email: String,
+        val rawPassword: String,
+        val name: String,
     ) : Params {
         override fun validate(): Boolean {
-            with(request) {
-                if (email.isBlank()) throw AuthInvalidParamErrors.REQUIRED_IDENTIFIER.toException()
-                if (Identifier.validate(email).not()) throw AuthInvalidParamErrors.INVALID_IDENTIFIER.toException()
 
-                if (password.isBlank()) throw AuthInvalidParamErrors.REQUIRED_PASSWORD.toException()
-                if (Password.validate(password).not()) throw AuthInvalidParamErrors.INVALID_PASSWORD.toException()
-            }
+            if (email.isBlank()) throw AuthInvalidParamErrors.REQUIRED_IDENTIFIER.toException()
+            if (Identifier.validate(email).not()) throw AuthInvalidParamErrors.INVALID_IDENTIFIER.toException()
+
+            if (rawPassword.isBlank()) throw AuthInvalidParamErrors.REQUIRED_PASSWORD.toException()
+            if (Password.validate(rawPassword).not()) throw AuthInvalidParamErrors.INVALID_PASSWORD.toException()
+
 
             return true
         }
     }
-
-    data class TraderJoinRequest(
-        val email: String,
-        val password: String,
-        val name: String,
-    )
 
     @Transactional
     override fun execute(params: Param) {
@@ -54,8 +50,8 @@ class TraderJoinUseCase(
 
     private fun buildBaseUser(param: Param): BaseUser {
         return BaseUser.new(
-            identifier = param.request.email,
-            password = Password.of(param.request.password, encoder),
+            identifier = param.email,
+            password = Password.of(param.rawPassword, encoder),
             role = Role.USER.name,
         )
     }
@@ -63,7 +59,7 @@ class TraderJoinUseCase(
     private fun buildTrader(param: Param, user: BaseUser): Trader {
         return Trader.join(
             userPK = user.pk,
-            name = param.request.name,
+            name = param.name,
         )
     }
 }

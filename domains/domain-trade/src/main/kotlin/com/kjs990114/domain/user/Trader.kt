@@ -15,7 +15,6 @@ data class Trader(
 
     override val audit: Audit,
 ): Auditable {
-
     fun delete(): Trader {
         if(deleted) throw TraderErrors.ALREADY_DELETED.toException()
 
@@ -35,11 +34,9 @@ data class Trader(
         ): Trader {
             return Trader(
                 userPK = userPK,
-
                 personal = PersonalInfo.from(
                     name = Name.of(name)
                 ),
-
                 audit = Audit.new(),
             )
         }

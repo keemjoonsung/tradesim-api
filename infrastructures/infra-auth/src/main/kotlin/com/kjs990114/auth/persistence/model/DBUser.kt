@@ -3,6 +3,7 @@ package com.kjs990114.auth.persistence.model
 import com.kjs990114.auth.domain.user.BaseUser
 import com.kjs990114.auth.domain.user.vo.Role
 import com.kjs990114.auth.domain.user.vo.Identifier
+import com.kjs990114.auth.domain.user.vo.Password
 import com.kjs990114.data.Audit
 import com.kjs990114.data.PK
 import java.time.LocalDateTime
